@@ -1,0 +1,59 @@
+#include<bits/stdc++.h>
+using namespace std;
+string SCSPS(string s1,int n1,string s2,int n2)
+{
+	int dp[n1+1][n2+1];
+	
+	for(int i=0;i<=n1;i++)
+	for(int j=0;j<=n2;j++)
+	{
+		if(i==0 || j==0)  dp[i][j] = 0;
+		
+		else if(s1[i-1] == s2[j-1])  dp[i][j] = dp[i-1][j-1] + 1 ;
+		
+		else  dp[i][j] = max(dp[i-1][j] , dp[i][j-1]);
+	}
+	
+	int i = n1 , j = n2;
+	
+	string s3(n1+n2-dp[n1][n2],'\n');
+	
+	int ind = n1+n2-dp[n1][n2];
+	
+	while(i || j)
+	{
+		if(i && j && s1[i-1] == s2[j-1])
+		{
+			s3[--ind] = s1[i-1];
+			i--;
+			j--;
+		}
+		
+		else if(i==0 || dp[i-1][j] < dp[i][j-1])
+		{
+			s3[--ind] = s2[j-1];
+			
+			j--;
+		}
+		else
+		{
+			s3[--ind] = s1[i-1];
+			
+			i--;
+		}
+	}
+	
+	return s3;
+}
+signed main()
+{
+	string s1 = "AGGTAB";
+	int n1 = s1.length();
+	
+	string s2 = "GXTXAYB";
+	int n2 = s2.length();
+    
+    cout<< SCSPS(s1,n1,s2,n2) <<endl;
+    
+	return 0;
+}
