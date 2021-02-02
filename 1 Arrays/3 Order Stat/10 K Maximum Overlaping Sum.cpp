@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+
 void K_Max_Sum_SubArr(vector<int> &a , int n , int k)
 {
 	for(int i = 1 ; i < n ; i++)
@@ -28,9 +29,9 @@ void K_Max_Sum_SubArr(vector<int> &a , int n , int k)
         for(int j = 0 ; j < k ; j++)
         ans[j] = temp[j];
 		
-		for (int j = 0 ; j < k; j++)
+		for(int j = 0 ; j < k; j++)
 		{ 
-        	if (a[i] < minp[j])
+        	if(a[i] < minp[j])
 			{
 			    for(int l = k-1 ; l > j ; l--)
 			    minp[l] = minp[l-1];
@@ -44,9 +45,10 @@ void K_Max_Sum_SubArr(vector<int> &a , int n , int k)
 	
 	for(int i = 0 ; i < k ; i++)
 	if(ans[i] != INT_MIN)
-	cout<< ans[i] <<" ";
-	cout<<endl;
+	cout << ans[i] <<" ";
+	cout << endl;
 }
+
 signed main()
 {
 	vector<int> a = {4 , -8, 9, -4, 1, -8, -1, 6};
