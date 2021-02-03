@@ -25,6 +25,7 @@ int Kth_Smallest(vector<vector<int>> &a , int n , int k)
             
             pq.push({a[x+1][y] , {x+1 , y}});
         }
+        
         if(y < n-1 && st.find({x , y+1}) == st.end())
         {
             st.insert({x , y+1});
