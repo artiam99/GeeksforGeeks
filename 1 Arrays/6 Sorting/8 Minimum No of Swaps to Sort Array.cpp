@@ -9,7 +9,7 @@ int No_of_Swap(vector<int> &arr , int n)
 	{
 		a[i].first = arr[i];
 		
-		a[i].second = i + 1;
+		a[i].second = i;
 	}
 	
 	sort(a , a + n);
@@ -17,19 +17,12 @@ int No_of_Swap(vector<int> &arr , int n)
 	int c = 0;
 	
 	for(int i = 0 ; i < n ; i++)
-	if(a[i].second != -1 && a[i].second != i + 1)
 	{
-		int j = a[i].second;
-		
-		while(i + 1 != j)
+		while(a[i].second != i)
 		{
+			swap(a[i] , a[a[i].second]);
+			
 			c++;
-			
-			int x = a[j-1].second;
-			
-			a[j-1].second = -1;
-			
-			j = x;
 		}
 	}
 	

@@ -11,7 +11,7 @@ void All_Subset(vector<int> &a , int n)
 		
 		for(int j = 0 ; j < n ; j++)
 		{
-			if((i & (1<<j)))
+			if((i & (1 << j)))
 			s.push_back(a[j]);
 		}
 		

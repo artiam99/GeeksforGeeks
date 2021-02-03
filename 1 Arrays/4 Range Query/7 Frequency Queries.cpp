@@ -18,7 +18,7 @@ void Frequency(vector<int> &a , int n , vector<pair<int,pair<int,int>>> &Q , int
 		
 		int low = lower_bound(m[val].begin() , m[val].end() , l) - m[val].begin();
 		
-		int high=upper_bound(m[val].begin() , m[val].end() , r) - m[val].begin();
+		int high = upper_bound(m[val].begin() , m[val].end() , r) - m[val].begin();
 		
 		cout << high - low << endl;
 	}

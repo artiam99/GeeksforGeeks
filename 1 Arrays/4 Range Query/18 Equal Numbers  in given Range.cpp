@@ -8,7 +8,6 @@ void Ans_Queries(vector<int> &a , int n , vector<pair<int,int>> &Q , int q)
 	for(int i = 0 ; i < n-1 ; i++)
 	{
 		if(a[i] == a[i+1])
-		
 		b[i]++;
 	}
 	
