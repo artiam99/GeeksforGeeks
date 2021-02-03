@@ -11,7 +11,7 @@ int Find_Rank(vector<int> &a , int n , int x)
 	{
 		cnt = upper_bound(a.begin() + i , a.end() , a[i] + x) - a.begin();
 		
-		rank += cnt - i - 1;
+		rank += cnt - (i + 1);
 	}
 	
 	return rank;

@@ -1,73 +1,53 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-bool isPossible(int arr[] , int n , int m , int curr_min) 
+int Minimum_Painters(int a[] , int n , int x)  // Minimum Painters Required to paint the whole wall in x time
 {
-	int studentsRequired = 1; 
-
-	int curr_sum = 0; 
-
-	for(int i = 0 ; i < n ; i++) 
-	{
-		if (arr[i] > curr_min) 
-		return false;
-		
-		if (curr_sum + arr[i] > curr_min) 
-		{
-			studentsRequired++;
-			 
-			curr_sum = arr[i];
-
-			if (studentsRequired > m) 
-			return false; 
-		}
-
-		else
-		curr_sum += arr[i];
-	}
-	
-	return true;
+    int curr = 0 , p = 1;
+    
+    for(int i = 0 ; i < n ; i++)
+    {
+        curr += a[i];
+        
+        if(curr > x)
+        {
+            curr = a[i];
+            
+            p++;
+        }
+    }
+    
+    return p;
 }
 
-int findPages(int arr[] , int n , int m)
+int Min_Time(int a[] , int n , int k)
 {
-	long long sum = 0;
+	int l = *max_element(a , a + n) , r = accumulate(a , a + n , 0);
+        
+    if(n <= k)
+    return l;
+    
+    while(l <= r)
+    {
+        int m = l + (r - l) / 2;
 
-	if (n < m) 
-	return -1; 
-
-	for (int i = 0 ; i < n ; i++) 
-	sum += arr[i];
-
-	int start = 0 , end = sum;
-	
-	int result = INT_MAX;
-
-	while (start <= end)
-	{
-		int mid = (start + end) / 2;
-	
-		if (isPossible(arr , n , m , mid))
-		{
-			result = min(result , mid);
-
-			end = mid - 1;
-		}
-
-		else
-		start = mid + 1;
-	}
-	
-	return result;
+        if(Minimum_Painters(a , n , m) <= k)
+        r = m - 1;
+        
+        else
+        l = m + 1;
+    }
+    
+    return l;
 }
 
 int main()
 {
-	int arr[] = {12, 34, 67, 90};
-	int n = sizeof arr / sizeof arr[0];
-	int m = 2;
+	int a[] = {12, 34, 67, 90};
+	int n = sizeof a / sizeof a[0];
+	int k = 2;
 
-	cout << "Minimum number of pages = " << findPages(arr , n , m) << endl;
+	cout << "Minimum Time = " << Min_Time(a , n , k) << endl;
 	
 	return 0;
 }
