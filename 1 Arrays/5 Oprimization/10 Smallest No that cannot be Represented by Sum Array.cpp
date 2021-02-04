@@ -3,6 +3,8 @@ using namespace std;
 
 int Smallest_No(vector<int> &a , int n)
 {
+	sort(a.begin() , a.end());
+	
 	int r = 1;
 	
 	for(int i = 0 ; i < n ; i++)

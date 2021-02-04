@@ -36,7 +36,7 @@ void Query_Sum(vector<int> &a , int n , vector<pair<int,pair<int,int>>> &Q , int
 		
 		while(curr > r)  //be careful about curr and curl........... curr is increased by 1 after sum is calculated and curl remains the same 
 		{
-			cursum -= a[curr-1];
+			cursum -= a[curr];
 			
 			curr--;
 		}
@@ -52,7 +52,7 @@ void Query_Sum(vector<int> &a , int n , vector<pair<int,pair<int,int>>> &Q , int
 		{
 			curl--;
 			
-			cursum += a[curl-1];
+			cursum += a[curl];
 		}
 		
 		ans[Q[i].first] = cursum;

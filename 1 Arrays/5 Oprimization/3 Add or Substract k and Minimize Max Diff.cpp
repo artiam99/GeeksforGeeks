@@ -3,27 +3,22 @@ using namespace std;
 
 int Max_Diff(vector<int> &a , int n , int k)
 {
-	sort(a.begin(),a.end());
-	
-	int ans = a[n-1]-a[0];  //if we do same operation in both end max and min will be the ends
-	
-	int small = a[0] + k , big = a[0] - k;
-	
-	if(big<small)  swap(big,small);
-	
-	for(int i = 0 ; i < n ; i++)
-	{
-		int add = a[i] + k , sub = a[i] - k;
-		
-		if(add <= big || sub >= small)
-		continue;
-		
-		if(add - small < big - sub)  big = add;
-	
-		else  small = sub;
-	}
-	
-	return min(ans , big - small);
+	sort(a.begin() , a.end());
+        
+    int res = a[n - 1] - a[0];
+    
+    int small = a[0] + k , big = a[n - 1] - k;
+    
+    for(int i = 0 ; i < n - 1 ; i++)
+    {
+        int add = max(a[i] + k , big);
+        
+        int sub = min(a[i + 1] - k , small);
+        
+        res = min(res , add - sub);
+    }
+    
+    return res;
 }
 
 int main()

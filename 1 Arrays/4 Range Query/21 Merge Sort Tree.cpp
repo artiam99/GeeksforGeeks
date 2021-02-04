@@ -57,13 +57,6 @@ int main()
 	
 	Build_MST(MST , 0 , n-1 , arr , 0);
 	
-	for(int i = 0 ; i < 2*pow(2,(int)ceil(log2(n))) - 1 ; i++)
-	{
-		for(int j = 0 ; j < MST[i].size() ; j++)
-		cout << MST[i][j] << " ";
-		cout<<endl;
-	}
-	
 	vector<pair<int,pair<int,int>>> Q = {{2 , {2 , 5}} , {4 , {1 , 6}}};
 	int q = Q.size();
 	

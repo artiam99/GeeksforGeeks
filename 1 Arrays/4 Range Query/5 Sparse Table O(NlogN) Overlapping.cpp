@@ -14,6 +14,15 @@ void Sparse(vector<int> &a ,int n , vector<pair<int,int>> &Q , int q)
 		lookup[j].push_back(min(lookup[j][i] , lookup[j + (1 << i)][i]));
 	}
 	
+	for(auto i : lookup)
+	{
+		for(auto j : i)
+		cout << j << " ";
+		cout << endl;
+	}
+	
+	cout << endl << endl;
+	
  	for(int i = 0 ; i < q ; i++)
 	{
 		int l = Q[i].first;
