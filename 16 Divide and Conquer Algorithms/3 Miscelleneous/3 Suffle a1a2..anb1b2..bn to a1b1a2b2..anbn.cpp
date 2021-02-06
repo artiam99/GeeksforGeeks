@@ -7,7 +7,7 @@ void shufleArray(int a[] , int n)
 
     int i = n - 1;
     
-	for(int j = 2*n - 1 ; j >= n ; j--)
+	for(int j = 2 * n - 1 ; j >= n ; j--)
     {
         a[j] <<= 10;
     
@@ -18,7 +18,7 @@ void shufleArray(int a[] , int n)
 
     i = 0;
     
-    for (int j = n ; j < 2*n ; j++)
+    for (int j = n ; j < 2 * n ; j++)
     {
         int a1 = a[j] & 1023;
         int a2 = a[j] >> 10;
