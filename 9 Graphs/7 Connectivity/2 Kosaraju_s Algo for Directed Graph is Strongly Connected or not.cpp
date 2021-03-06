@@ -52,6 +52,8 @@ bool StronglyConnected(Graph* g)
 	if(!i)
 	return false;
 	
+	fill(vis.begin(),vis.end(),false);
+	
 	Graph* gt=Transpose(g);
 	
 	DFS(gt,0,vis);

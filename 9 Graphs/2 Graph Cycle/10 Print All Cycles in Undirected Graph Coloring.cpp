@@ -79,24 +79,23 @@ void PrintAllCycles(Graph* g)
 }
 signed main()
 {
-	int V=13;
+	int V=9;
 	
 	Graph* g=CreateGraph(V);
 	
 	addEdge(g, 1, 2); 
+    addEdge(g, 1, 3); 
+    addEdge(g, 1, 4); 
     addEdge(g, 2, 3); 
-    addEdge(g, 3, 4); 
-    addEdge(g, 4, 6); 
-    addEdge(g, 4, 7); 
+    addEdge(g, 4, 9);
+	addEdge(g, 1, 9); 
     addEdge(g, 5, 6); 
-    addEdge(g, 3, 5); 
-    addEdge(g, 7, 8); 
-    addEdge(g, 6, 10); 
-    addEdge(g, 5, 9); 
-    addEdge(g, 10, 11); 
-    addEdge(g, 11, 12); 
-    addEdge(g, 11, 13); 
-    addEdge(g, 12, 13);
+    addEdge(g, 5, 7); 
+    addEdge(g, 5, 8); 
+    addEdge(g, 6, 7); 
+    addEdge(g, 8, 7); 
+	addEdge(g, 1, 5); 
+
 	
 	PrintAllCycles(g);
 	

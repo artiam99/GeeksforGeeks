@@ -57,7 +57,7 @@ void BTtoDLL(Node* root,Node* &head)
 	if(prev)
 	prev->right=root;
 	
-	root->right=NULL;
+	
 	
 	prev=root;
 }
@@ -74,6 +74,7 @@ signed main()
     
 	Node* head=NULL;
 	BTtoDLL(root,head);
+	root->right=NULL;
     
 	print_list(head);
 	

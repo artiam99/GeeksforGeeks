@@ -3,7 +3,7 @@ using namespace std;
 
 bool compa(pair<int,int> a1 , pair<int,int> a2)
 {
-	return (a1.first < a2.second);
+	return (a1.first < a2.first);
 }
 
 bool compq(pair<pair<int,int>,pair<int,int>> q1 , pair<pair<int,int>,pair<int,int>> q2)

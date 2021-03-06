@@ -48,9 +48,9 @@ void Union(vector<pair<int,int>> &parent,int uroot,int vroot)
 }
 bool DetectCycle(Graph* g)
 {
-	vector<pair<int,int>> parent(g->E);
+	vector<pair<int,int>> parent(g->V);
 	
-	for(int i=0;i<g->E;i++)
+	for(int i=0;i<g->V;i++)
 	parent[i]={i,0};// ( parent , rank )
 	
 	int cnt=0;

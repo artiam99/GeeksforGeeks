@@ -30,10 +30,10 @@ bool DFS(Graph* g,int u,vector<bool> &vis,int v)
 	
 	for(auto i:g->adj[u])
 	{
-		if(!vis[i] && DFS(g,i,vis,u))
+		if(vis[i] && i!=v)
 		return true;
 		
-		else if(i!=v)
+		if(!vis[i] && DFS(g,i,vis,u))
 		return true;
 	}
 	

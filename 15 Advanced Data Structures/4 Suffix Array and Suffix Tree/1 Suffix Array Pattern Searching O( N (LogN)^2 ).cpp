@@ -22,7 +22,7 @@ int* Construct(string &s , int n)
 		
 		Arr[i].rank[0] = s[i] - 'a';
 		
-		Arr[i].rank[1] = ((i == n-1) ? -1 : s[i] - 'a');
+		Arr[i].rank[1] = ((i == n-1) ? -1 : s[i+1] - 'a');
 	}
 	
 	sort(Arr , Arr + n , comp);

@@ -55,3 +55,88 @@ signed main()
     
     return 0;
 }
+/*
+	for (; x <= N; x += (x & -x))
+	{
+	____for (; y <= N; y += (y & -y)) ________// here y becomes > N for the initial value of x ...
+	____BIT[x][y] += val; _________________//So next iterations for the outer loop are useless
+	}
+	
+	for(;y <= N ; y += (y & -y))
+	BIT[x][y] += val;
+	
+	is enough and that's why Complexity for each Getsum and Update are O(logM)\
+	Overall Complexity is O((NM + Q) LogM)
+	
+	if You're Confused about AUX it's useless. it's just rotating the whole matrix clock wise once.
+	Because In the question Matrix's (0,0) index is at the bottom left corner (makes no sense though)
+	
+	Here is a Clean Code : https://ide.geeksforgeeks.o...
+	Practice : https://leetcode.com/proble...
+	
+	Eg.
+	
+	Mat
+	
+	2348
+	5679
+	8908
+	
+	Initial BIT
+	
+	00000
+	00000
+	00000
+	00000
+	00000
+	
+	..............................................................................................................
+	
+	for - Mat[0][0] 2 will be added to first row as 1 dimensional BIT
+	
+	00000
+	02202
+	00000
+	00000
+	00000
+	
+	Now if we add (say) Mat[1][0]
+	
+	getsum[1+1][1+1] = 0 , getsum[0+1][1+1] = 2 , getsum[1+1][0+1] = 0 , getsum[0+1][0+1] = 0
+	
+	getsum[1+1][1+1] - getsum[0+1][1+1] - getsum[1+1][0+1] + getsum[0+1][0+1]) = -2;
+	
+	diff = Mat[1][0] - (getsum[1+1][1+1] - getsum[0+1][1+1] - getsum[1+1][0+1] + getsum[0+1][0+1])
+	= 5 + 2 = 7;
+	
+	so this 7 will be added to second row as 1 dimensional BIT
+	(extra 2 for Mat[0][0] from getsum[0+1][1+1])
+	
+	00000
+	02202
+	07707
+	00000
+	00000
+	
+	Note that : This Method doesn't support Update Queries (As it's taking values form previous rows and columns , Insertion should be in order)
+	
+	For Update Queries use a Regular 2D Binary index tree
+	
+	void Update(int* BIT , int x , int y , int diff)
+	{
+	____for(int i = x ; i <= N ; i += (i & -i))
+	____for(int j = y ; j <= M ; j+= (j & -j))
+	____BIT[i][j] += diff;
+	}
+	
+	int Get_Sum(int* BIT , int x , int y)
+	{
+	____int sum = 0;
+	____for(int i = x ; i > 0 ; i -= (i & -i))
+	____for(int j = y ; j > 0 ; j -= (j & -j))
+	____sum += BIT[i][j];
+	____return sum;
+	}
+	
+	This will work But Time Complexity Will Be => O((NM + Q)(LongN * LongM))
+*/

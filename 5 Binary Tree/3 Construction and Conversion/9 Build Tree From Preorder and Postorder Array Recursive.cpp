@@ -46,9 +46,7 @@ Node* construct(int pre[],int post[],int &ind,unordered_map<int,int> &m,int l,in
 	
     root->right=construct(pre,post,ind,m,i+1,r-1,n);// right sub tree range i+1 to r   ... for root = 1 left  subtree is 8,9,4,5,2  and  Right subtree is 6,7,3
 	
-	
 	return root;
-	
 }
 Node* buildTree(int pre[],int post[], int n)
 {

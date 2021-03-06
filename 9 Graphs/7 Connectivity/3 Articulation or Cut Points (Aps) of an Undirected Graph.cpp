@@ -74,13 +74,11 @@ void FindAps(Graph* g)
 }
 signed main()
 {
-    Graph *g1 = CreateGraph(5);
+    Graph *g1 = CreateGraph(3);
     
     addEdge(g1, 1, 0);
     addEdge(g1, 0, 2);
     addEdge(g1, 2, 1);
-    addEdge(g1, 0, 3);
-    addEdge(g1, 3, 4);
     
     cout<<"Articulation points in first graph : ";
     FindAps(g1);
