@@ -38,7 +38,7 @@ void PowerSet(string &s,int n)
 }
 signed main()
 {
-	string s = "aaa";
+	string s = "aba";
 	int n = s.length();
 	
 	PowerSet(s,n);
