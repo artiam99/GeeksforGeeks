@@ -10,6 +10,8 @@ int gcd(int a , int b)
 
 void leftrotate(int a[] , int n , int d)  //directly sending to right position ....theta(n)
 {
+	d %= n;
+	
 	int g = gcd(n , d);
 	
 	for(int i = 0 ; i < g ; i++)
@@ -20,10 +22,7 @@ void leftrotate(int a[] , int n , int d)  //directly sending to right position .
 		
 		while(1)
 		{
-			int k = j + d;
-			
-			if(k > n - 1)
-			k = k - n;
+			int k = (j + d) % n;
 			
 			if(k == i)
 			break;
