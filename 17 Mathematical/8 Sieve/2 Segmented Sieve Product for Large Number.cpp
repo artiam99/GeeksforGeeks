@@ -20,13 +20,11 @@ void Simple_Sieve(int sq , vector<int> &primes)
     
 }
 
-int Segmented_Sieve(int l , int r , int sq , vector<int> &primes)
+void Segmented_Sieve(int l , int r , int sq , vector<int> &primes)
 {   
     int low = l;
     
     int high = low + sq;
-    
-    int ans = 1;
     
     while(low <= r)
     {
@@ -51,19 +49,20 @@ int Segmented_Sieve(int l , int r , int sq , vector<int> &primes)
         
         for(int i = low ; i < high ; i++)
         if(P[i - low])
-        ans = (ans % mod * i % mod) % mod;
+        cout << i << " ";
         
         low = high;
         
         high = low + sq;
     }
     
-    return ans;
+    cout << endl;
 }
 
 signed main()
 {
 	int mx = 1000000000;
+	
 	
 	int sq = floor(sqrt(mx));
     
@@ -71,9 +70,9 @@ signed main()
     
 	Simple_Sieve(sq , primes);
 	
-	int l = 3456789 ,  r = 45689124;
+	int l = 3456789 ,  r = 4568912;
 	    
-	cout << Segmented_Sieve(l , r , sq , primes) << endl;
+	Segmented_Sieve(l , r , sq , primes);
 	
 	return 0;
 }

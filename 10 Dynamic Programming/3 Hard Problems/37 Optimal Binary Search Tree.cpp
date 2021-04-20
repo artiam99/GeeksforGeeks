@@ -1,7 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int sum(int freq[] , int i , int j);
+int sum(int freq[] , int i , int j)
+{
+	int s = 0;
+	
+	for (int k = i ; k <= j ; k++)
+	s += freq[k];
+	
+	return s;
+}
 
 int optimalSearchTree(int keys[] , int freq[] , int n)
 {
@@ -29,16 +37,6 @@ int optimalSearchTree(int keys[] , int freq[] , int n)
 	}
 	
 	return cost[0][n-1];
-}
-
-int sum(int freq[] , int i , int j)
-{
-	int s = 0;
-	
-	for (int k = i ; k <= j ; k++)
-	s += freq[k];
-	
-	return s;
 }
 
 int main()

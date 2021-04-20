@@ -48,9 +48,14 @@ void findMaxProfit(vector<job> &a,int n)
 			
 			in[i] = l;
 		}
+		
+		if(a[i].s < a[i-1].e)
+		dp[i] = max(dp[i-1] , dp[i]);
 	}
 	
 	int ind = max_element(dp,dp+n) - dp;
+	
+	cout << dp[ind] << endl;
 	
 	stack<int> st;
 	
@@ -72,7 +77,7 @@ void findMaxProfit(vector<job> &a,int n)
 }
 signed main()
 {
-    vector<job> a = { {3, 10, 20}, {1, 2, 50}, {6, 19, 100}, {2, 100, 200} }; 
+    vector<job> a = { {1, 2, 120}, {3, 4, 150}, {1, 5, 1}, {6, 8, 1200} }; 
     int n = a.size();
     
     findMaxProfit(a , n); 

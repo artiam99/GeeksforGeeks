@@ -16,7 +16,7 @@ bool Check(vector<int> &a,int n)
 }
 int main() 
 {
-	vector<int> a = {20, 11, 18, 2, 13};
+	vector<int> a = {20, 13, 15, 7, 13};
 	int n = a.size();
 	
 	if(Check(a,n))  cout << "YES" << endl;

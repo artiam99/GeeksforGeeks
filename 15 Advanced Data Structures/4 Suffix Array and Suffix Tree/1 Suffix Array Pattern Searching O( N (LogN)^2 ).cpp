@@ -77,20 +77,20 @@ void Search(string &pat , int m , string &s , int n , int* suffarr)
 	
 	while(l <= r)
 	{
-		int m = l + (r - l) / 2;
+		int mid = l + (r - l) / 2;
 		
-		int res = strncmp(patt , str + suffarr[m] , m);
+		int res = strncmp(patt , str + suffarr[mid] , m);
 		
 		if(res == 0)
 		{
-			cout << "Pattern Found at " << suffarr[m] << endl;
+			cout << "Pattern Found at " << suffarr[mid] << endl;
 			
 			return;
 		}
 		
-		else if(res == -1)  r = m - 1;
+		else if(res == -1)  r = mid - 1;
 		
-		else  l = m + 1;
+		else  l = mid + 1;
 	}
 	
 	cout << "Pattern not Found" << endl;

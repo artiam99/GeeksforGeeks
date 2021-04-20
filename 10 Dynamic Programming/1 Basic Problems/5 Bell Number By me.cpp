@@ -25,7 +25,7 @@ int Bell(int n)
 }
 signed main()
 {
-    int n=5;
+    int n=3;
     
     cout<< Bell(n) <<endl;
     

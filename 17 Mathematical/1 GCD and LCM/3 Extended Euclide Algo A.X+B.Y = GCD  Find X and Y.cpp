@@ -26,7 +26,7 @@ int gcd(int a , int b , int &x , int &y)
 
 int main()
 {
-	int a = 20 , b = 30 , x , y;
+	int a = 10 , b = 7 , x , y;
 	
 	int g = gcd(a , b , x , y);
 	

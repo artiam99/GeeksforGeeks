@@ -13,7 +13,7 @@ void Prime_Factors(int N)
 		}
 	}
 	
-	if(N > 2)
+	if(N >= 2)
 	cout << N;
 	
 	cout << endl;
@@ -21,7 +21,7 @@ void Prime_Factors(int N)
 
 signed main()
 {
-	int N = 46;
+	int N = 112;
 	
 	Prime_Factors(N);	
 }

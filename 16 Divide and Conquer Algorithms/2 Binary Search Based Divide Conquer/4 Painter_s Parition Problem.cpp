@@ -31,7 +31,7 @@ int Min_Time(int a[] , int n , int k)
     {
         int m = l + (r - l) / 2;
 
-        if(Minimum_Painters(a , n , m) <= k)
+        if(Minimum_Painters(a , n , m) <= k) // K painters can easily paint in lesser time ... so decrement r
         r = m - 1;
         
         else

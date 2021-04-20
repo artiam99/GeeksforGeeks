@@ -14,11 +14,11 @@ void PrintSum(vector<int> a,int n,int sum,vector<vector<bool>> &dp,vector<int> &
 	if(n < 0 && sum < 0)
 	return;
 	
-	if(dp[n][sum])
+	if(dp[n+1][sum])
 	PrintSum(a,n-1,sum,dp,p);
 	
 	
-	if(sum >= a[n] && dp[n][sum-a[n]])
+	if(sum >= a[n] && dp[n+1][sum-a[n]])
 	{
 		p.push_back(a[n]);
 

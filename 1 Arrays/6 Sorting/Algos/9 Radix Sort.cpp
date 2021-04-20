@@ -28,8 +28,8 @@ void radixsort(vector<int> &a , int n)
 {
 	int m = *max_element(a.begin() , a.end());
 	
-	for(int i = 1 ; m / i > 0 ; i *= 10)
-	coutntingsort(a , n , i);
+	for(int i = 0 ; i < floor(log10(n)) + 1 ; i++)
+	coutntingsort(a , n , pow(10 , i));
 }
 
 int main() 

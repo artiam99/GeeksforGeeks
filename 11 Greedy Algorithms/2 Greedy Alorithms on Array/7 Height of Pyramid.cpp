@@ -2,6 +2,8 @@
 using namespace std;
 int Max_Height(vector<int> &a,int n)
 {
+	sort(a.begin() , a.end());
+	
 	int ans = 1;
 	
 	int prev_cnt = 1 , prev_wid = a[0];

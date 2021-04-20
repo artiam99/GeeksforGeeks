@@ -35,7 +35,7 @@ int Max_XOR_Subset(vector<int> &a,int n)
 }
 signed main()
 {
-	vector<int> a = {8, 1, 2, 7, 12, 6};
+	vector<int> a = {2 , 3};
 	int n = a.size();
 	
 	cout << Max_XOR_Subset(a,n) << endl;

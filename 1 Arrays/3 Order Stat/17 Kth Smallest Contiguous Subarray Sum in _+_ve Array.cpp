@@ -11,9 +11,7 @@ int Find_Rank(vector<int> &a , int n , int x)
 	
 	for(int i = 0 ; i < n ; i++)
 	{
-		cnt = upper_bound(a.begin() , a.end() , x + prev_sum) - a.begin();
-		
-		cnt -= i;
+		cnt = upper_bound(a.begin() + i , a.end() , x + prev_sum) - (a.begin() + i);
 		
 		rank += cnt;
 		
@@ -28,7 +26,7 @@ int Kth_Min_Subarr_Sum(vector<int> &a , int n , int k)
 	for(int i = 1 ; i < n ; i++)
 	a[i] += a[i-1];
 	
-	int l = 0 , r = a[n-1] , m;
+	int l = *min_element(a.begin() , a.end()) , r = a[n-1] , m;
 	
 	while(l <= r)
 	{

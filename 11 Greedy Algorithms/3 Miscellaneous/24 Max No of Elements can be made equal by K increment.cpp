@@ -36,9 +36,9 @@ int Max_No_of_Elements(vector<int> &a,int n,int k)
 }
 signed main()
 {
-	vector<int> a = {2, 4, 9};
+	vector<int> a = {1, 1, 1, 1, 1, 2, 2};
 	int n = a.size();
-	int k = 3;
+	int k = 5;
 	
 	cout<< Max_No_of_Elements(a,n,k) << endl;
 	
