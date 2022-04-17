@@ -1,106 +1,116 @@
 #include<bits/stdc++.h>
 using namespace std;
+#define int long long
 
-int Distance(pair<int,int> &p , pair<int,int> &q , pair<int,int> &r)
+struct Point
 {
-    int x1 = p.first - q.first , y1 = p.second - q.second;
-
-    int dist1 = (y1 * y1) + (x1 * x1);
-
-    int x2 = p.first - r.first , y2 = p.second - r.second;
-
-    int dist2 = (y2 * y2) + (x2 * x2);
-
-    return dist1 - dist2;
-}
-
-int Orientation(pair<int,int> &p , pair<int,int> &q , pair<int,int> &r)
-{
-    int val = (q.second - p.second) * (r.first - q.first) - (q.first - p.first) * (r.second - q.second); 
-  
-    if(val == 0) return 0;
-    
-    return ((val > 0) ? 1 : 2);
-}
-
-void Convex_Hull(vector<pair<int,int>> &points , int n)
-{
-    set<pair<int,int>> result;
-    
-    pair<int,int> start;
-    
-	start = points[0];
-    
-	for(int i = 0 ; i < n ; i++)
-    if(start.first > points[i].first)
-    start = points[i];
-    
-    pair<int,int> curr = start;
-    
-	result.insert(start);
-
-    while(true)
+    int x, y;
+    Point(int x, int y)
     {
-        set<pair<int,int>> colinear; 
+        this->x = x;
+        this->y = y;
+    }
+};
+
+int orientation(Point p, Point q, Point r)
+{   
+    int val = (((q.y - p.y) * (r.x - q.x)) - ((q.x - p.x) * (r.y - q.y)));
     
-	    pair<int,int> next = points[0];
+    if(val == 0) return 0; // colinear
+    if(val > 0) return 1; // clockwise
+    return 2; // counter-clockwis 
+}
+
+double distance(Point p, Point q)
+{
+    return sqrt(((p.x - q.x) * (p.x - q.x)) + ((p.y - q.y) * (p.y - q.y)));
+}
+
+vector<Point> convexHull(vector<Point> &points, int n)
+{
+    int start = 0;
+        
+    for(int i = 0; i < n; i++)
+    if(points[i].x < points[start].x ||
+       (points[i].x == points[start].x && points[i].y < points[start].y))
+        start = i;
     
-	    for(int i = 0 ; i < n ; i++)
+    
+    // storing indices for convex hull points.
+    vector<int> ansInd;
+    ansInd.push_back(start);
+    
+    int p = start;
+    
+    // vis array to check if already visited or not.
+    vector<bool> vis(n);
+    vis[p] = true;
+    
+    do
+    {   
+        // choosing any point other than p. 
+        int q = (p + 1) % n;
+        
+        
+        for(int i = 0; i < n; i++)
+        {   
+            // if Counter clockwise orientation for p - i - q is found
+            if(orientation(points[p], points[i], points[q]) == 2)
+            {
+                // Update q to i.   
+                q = i;      
+            }   
+        }
+        
+        // if no counter-clockwise points are found then
+        // it is guaranteed q was counter-clockwise most point 
+        int farthestColinear = q;
+        
+        for(int i = 0; i < n; i++)
         {
-            if(points[i] == curr)
-            continue;
-            
-            int val = Orientation(curr , next , points[i]);
-           
-		    if(val == 2)
+            // if p - i - q are colinear
+            if(i != p && orientation(points[p], points[i], points[q]) == 0)
             {
-                next = points[i];
-            
-			    colinear.clear();
-            }
-            
-            else if(val == 0)
-            {
-                int dist = Distance(curr , next , points[i]);
-                
-                if(dist < 0)
+                if(!vis[i])
                 {
-                    colinear.insert(next);
-   
-                    next = points[i];
+                    vis[i] = true;
+                    
+                    // if you want to store colinear points store here and use vis array.
+                    ansInd.push_back(i);
+
+                    // remember they are not sorted wrt distance from p.
+                    // if order is required sort them wrt distance form p.
                 }
-            	
-				else
-                colinear.insert(points[i]);
+                
+                // find farthes Colinear point with p - q from p.
+                if(distance(points[p], points[farthestColinear]) < distance(points[p], points[i]))
+                    farthestColinear = i;   
             }
         }
- 
-        /* 
-        	Considering Co-linear Points
-        	
-			for(auto i : colinear)
-          	result.insert(i);
-		*/
-   
-        if(next == start)
-        break;
-   
-        result.insert(next);
-
-        curr = next;
-    }
+        
+        
+        // If you don't want to store colinear points store fathers colinear point here.
+        //ansInd.push_back(farthestColinear);
+        
+        p = farthestColinear;
+        
+    } while(p != start);
     
-    for(auto i : result)
-    cout << i.first << " " << i.second << endl;
+    vector<Point> ans;
+    
+    for(int i = 0; i < ansInd.size(); i++)
+        ans.push_back(points[ansInd[i]]);
+    
+    return ans;
 }
-
 signed main()
-{
-	vector<pair<int,int>> points = {{0 , 3} , {2 , 2} , {1 , 1} , {2 , 1} , {3 , 0} , {0 , 0} , {3 , 3}};
+{        
+    vector<Point> points = {{3, 0}, {4, 0}, {5, 0}, {6, 1}, {7, 2}, {7, 3}, {7, 4}, {6, 5}, {5, 5}, {4, 5}, {3, 5}, {2, 5}, {1, 4}, {1, 3}, {1, 2}, {2, 1}, {4, 2}, {0, 3}};
     int n = points.size();
-    
-	Convex_Hull(points , n);
-	
-	return 0;
-}
 
+    vector<Point> hull = convexHull(points, n);
+        
+    for(auto i: hull)
+        cout << "(" << i.x << ", " << i.y << "), ";
+    cout << endl;
+}
